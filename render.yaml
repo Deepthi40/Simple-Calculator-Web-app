@@ -1,0 +1,17 @@
+services:
+- name: myjenkins
+  type: web
+  runtime: docker
+  region: oregon
+  plan: starter
+  image: jenkins/jenkins:lts
+  ports:
+  - port: 8080
+    targetPort: 8080
+  healthCheck:
+    path: /login
+    interval: 10s
+    timeout: 5s
+    retries: 3
+    startPeriod: 30s
+    successThreshold: 1
